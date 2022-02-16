@@ -1,4 +1,4 @@
-from blinky.cli import pass_environment
+from skippytel.cli import pass_environment
 import click
 import time
 import busio
@@ -9,7 +9,7 @@ import adafruit_rfm9x
 
 
 
-@click.command("clock", short_help="Matrix Clock")
+@click.command("test", short_help="Test RFM9x Functionality")
 @pass_environment
 def cli(ctx):
     """
