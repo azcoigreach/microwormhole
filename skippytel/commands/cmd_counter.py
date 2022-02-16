@@ -45,7 +45,8 @@ def cli(ctx):
         for count in range(0,1000,1):
             
             display.text(str(count), 35, 0, 1)
-            rfm9x.send(str(count))
+            count_bytes = bytes(count,"utf-8")
+            rfm9x.send(count_bytes)
             display.show()
             time.sleep(1)
 
