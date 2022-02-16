@@ -9,7 +9,8 @@ setup(
         "click",
         "adafruit-circuitpython-ssd1306",
         "adafruit-circuitpython-framebuf",
-        "adafruit-circuitpython-rfm9x"
+        "adafruit-circuitpython-rfm9x",
+        "psutil",
     ],
     entry_points="""
         [console_scripts]
