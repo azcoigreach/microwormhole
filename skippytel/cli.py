@@ -30,7 +30,7 @@ pass_environment = click.make_pass_decorator(Environment, ensure=True)
 cmd_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), "commands"))
 
 
-class SkipyyTelCLI(click.MultiCommand):
+class SkippyTelCLI(click.MultiCommand):
     def list_commands(self, ctx):
         rv = []
         for filename in os.listdir(cmd_folder):
