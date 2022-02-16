@@ -1,9 +1,8 @@
 import os
-if os.geteuid() != 0:
-    exit("You need to have root privileges to run this script.\nPlease try again with 'sudo'. Exiting.")
+# if os.geteuid() != 0:
+#     exit("You need to have root privileges to run this script.\nPlease try again with 'sudo'. Exiting.")
 import sys
 import click
-from rgbmatrix import RGBMatrix, RGBMatrixOptions
 
 CONTEXT_SETTINGS = dict(auto_envvar_prefix="SKIPPYTEL")
 
