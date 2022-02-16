@@ -45,7 +45,7 @@ def cli(ctx):
     while True:
         display.fill(0)
         l1, l2, l3 = psutil.getloadavg()
-        CPU_use = str((l3/os.cpu_count()) * 100)
+        CPU_use = str((l1/os.cpu_count()) * 100)
         display.text("CPU:" + CPU_use, 35, 0, 1)
         bytes_out = bytes(str("CPU:" + CPU_use),"utf-8")
         rfm9x.send(bytes_out)
