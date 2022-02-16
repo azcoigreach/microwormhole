@@ -48,7 +48,7 @@ def cli(ctx):
             count_bytes = bytes(str(count),"utf-8")
             rfm9x.send(count_bytes)
             display.show()
-            time.sleep(1)
+            time.sleep(0.1)
 
 
 
