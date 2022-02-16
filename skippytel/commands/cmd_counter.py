@@ -44,8 +44,8 @@ def cli(ctx):
         display.fill(0)
         for count in range(0,1000,1):
             
-            display.text(count, 35, 0, 1)
-            rfm9x.send(count)
+            display.text(str(count), 35, 0, 1)
+            rfm9x.send(str(count))
             display.show()
             time.sleep(1)
 
