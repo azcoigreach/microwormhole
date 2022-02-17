@@ -3,6 +3,10 @@ import os
 #     exit("You need to have root privileges to run this script.\nPlease try again with 'sudo'. Exiting.")
 import sys
 import click
+import digitalio
+import board
+import busio
+import adafruit_rfm9x
 
 CONTEXT_SETTINGS = dict(auto_envvar_prefix="SKIPPYTEL")
 
@@ -57,8 +61,65 @@ class SkippyTelCLI(click.MultiCommand):
     is_flag=True, 
     help="Enables verbose mode."
     )
+@click.option(
+    "-f",
+    "--frequency",
+    "frequency",
+    default=915.0,
+    show_default=True,
+    help="Frequency in MHZ. 915.0 868.0"
+    )
+@click.option(
+    "-b",
+    "--baudrate",
+    "baudrate",
+    type=int,
+    default=1000000,
+    show_default=True,
+    help="SPI baudrate 1Mhz (range: 1-10Mhz)"
+    )
+@click.option(
+    "-p",
+    "--tx_power",
+    "tx_power",
+    type=int,
+    default=23,
+    show_default=True,
+    help="TX Power in dB (range: 1-23db)"
+    )
+@click.option(
+    "--coding_rate",
+    "coding_rate",
+    type=int,
+    default=6,
+    show_default=True,
+    help="rfm9x.coding_rate"
+    )
+@click.option(
+    "--signal_bandwidth",
+    "signal_bandwidth",
+    type=int,
+    default=62500,
+    show_default=True,
+    help="rfm9x.signal_bandwidth"
+    )
+@click.option(
+    "--spreading_factor",
+    "spreading_factor",
+    type=int,
+    default=8,
+    show_default=True,
+    help="rfm9x.spreading factor"
+    )
+@click.option(
+    "--enable_crc",
+    "enable_crc",
+    default=True,
+    show_default=True,
+    help="rfm9x.enable_crc"
+    )
 @pass_environment
-def cli(ctx, verbose, home):
+def cli(ctx, verbose, home, frequency, baudrate, tx_power, coding_rate, signal_bandwidth, spreading_factor, enable_crc):
     """SkippyTel - Microwormhole LoRa Manager"""
     ctx.verbose = verbose
     if home is not None:
