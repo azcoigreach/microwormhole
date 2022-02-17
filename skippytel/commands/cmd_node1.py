@@ -2,7 +2,7 @@ from skippytel.cli import pass_environment
 import click
 import time
 import busio
-from digitalio import DigitalInOut, Direction, Pull
+import digitalio
 import board
 import adafruit_ssd1306
 import adafruit_rfm9x
