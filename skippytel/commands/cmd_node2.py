@@ -11,7 +11,7 @@ import psutil
 
 
 
-@click.command("node1", short_help="Node packet updater")
+@click.command("node2", short_help="Node packet updater")
 @pass_environment
 def cli(ctx):
     """
