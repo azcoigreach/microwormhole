@@ -26,7 +26,7 @@ def cli(ctx):
     transmit_interval = 10
 
     # Define radio parameters.
-    RADIO_FREQ_MHZ = ctx.frequency  # Frequency of the radio in Mhz. Must match your
+    RADIO_FREQ_MHZ = 915.0  # Frequency of the radio in Mhz. Must match your
     # module! Can be a value like 915.0, 433.0, etc.
 
     # Define pins connected to the chip.
