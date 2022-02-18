@@ -83,7 +83,7 @@ def cli(ctx):
             display.fill(0)
             # display.text("Received (raw header):", [hex(x) for x in packet[0:4]], width - 1, height - 1, 1)
             display.text("Received (raw payload): {0}".format(packet[4:]), 1, 1, 1)
-            display.text("RSSI: {0}".format(rfm9x.last_rssi), 2, 8, 1)
+            display.text("RSSI: {0}".format(rfm9x.last_rssi), 1, 10, 1)
             display.show()
 
             # send response 2 sec after any packet received
