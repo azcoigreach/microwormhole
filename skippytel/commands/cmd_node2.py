@@ -21,6 +21,12 @@ def cli(ctx):
     ctx.log(click.style("Launching Microwormhole", fg="cyan"))
     ctx.vlog(click.style("Debug", fg="red"))
 
+    # Create the I2C interface.
+    i2c = busio.I2C(board.SCL, board.SDA)
+
+    # 128x32 OLED Display
+    reset_pin = digitalio.DigitalInOut(board.D4)
+    display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
     
     # Define radio parameters.
     RADIO_FREQ_MHZ = 915.0  # Frequency of the radio in Mhz. Must match your
