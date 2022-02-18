@@ -27,6 +27,12 @@ def cli(ctx):
     # 128x32 OLED Display
     reset_pin = digitalio.DigitalInOut(board.D4)
     display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
+    # Clear the display.
+    display.fill(0)
+    display.show()
+    width = display.width
+    height = display.height
+
     
     # Define radio parameters.
     RADIO_FREQ_MHZ = 915.0  # Frequency of the radio in Mhz. Must match your
