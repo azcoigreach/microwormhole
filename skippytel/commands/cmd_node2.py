@@ -34,7 +34,17 @@ def cli(ctx):
     # Initialize SPI bus.
     spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
     # Initialze RFM radio
-    rfm9x = adafruit_rfm9x.RFM9x(spi, CS, RESET, RADIO_FREQ_MHZ)
+
+    # Attempt to set up the rfm9x Module
+    try:
+        rfm9x = adafruit_rfm9x.RFM9x(spi, CS, RESET, RADIO_FREQ_MHZ)
+        display.text("rfm9x: Detected", 0, 0, 1)
+    except RuntimeError:
+        # Thrown on version mismatch
+        display.text("rfm9x: ERROR", 0, 0, 1)
+
+    display.show()
+
 
     # set delay before transmitting ACK (seconds)
     rfm9x.ack_delay = 0.1
@@ -57,6 +67,13 @@ def cli(ctx):
             print("Received (raw header):", [hex(x) for x in packet[0:4]])
             print("Received (raw payload): {0}".format(packet[4:]))
             print("RSSI: {0}".format(rfm9x.last_rssi))
+
+            display.fill(0)
+            display.text("Received (raw header):", [hex(x) for x in packet[0:4]], width - 1, height - 1, 1)
+            display.text("Received (raw payload): {0}".format(packet[4:]), width - 1, height - 8, 1)
+            display.text("RSSI: {0}".format(rfm9x.last_rssi), width - 1, height - 16, 1)
+            display.show()
+
             # send response 2 sec after any packet received
             time.sleep(2)
             counter += 1
